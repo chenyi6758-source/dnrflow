@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dnrflow"
+version = "0.1.0"
+description = "Distribution network reconfiguration for pandapower networks: branch-exchange loss minimisation with a MILP global-optimum check and exhaustive enumeration on small networks"
+readme = "README.md"
+license = { text = "BSD-3-Clause" }
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "pandapower>=2.14",
+    "scipy",
+    "networkx",
+]
+authors = [{ name = "ChenYi-Nnergy" }]
+keywords = ["distribution-network", "reconfiguration", "loss-minimisation", "branch-exchange", "MILP", "pandapower", "radial"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+plot = ["matplotlib"]
+
+[project.scripts]
+dnrflow = "dnrflow.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+exclude = ["src/dnrflow/data.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "D"]
+ignore = ["D100", "D101", "D102", "D103", "D104", "D105", "D107", "D203", "D213"]
